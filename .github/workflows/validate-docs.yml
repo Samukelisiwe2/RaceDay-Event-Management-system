@@ -30,7 +30,7 @@ jobs:
 
       - name: Check ERD image
         run: |
-          if [ ! -f "docs/RaceDay_ERD(1).png" ]; then
+          if [ ! -f "docs/RaceDay_ERD.png" ]; then
             echo "ERROR: RaceDay ERD image is missing."
             exit 1
           fi
@@ -38,7 +38,7 @@ jobs:
 
       - name: Check API Endpoint Plan
         run: |
-          if [ ! -f "docs/RaceDay_API_Endpoint_Plan.pdf" ]; then
+          if [ ! -f "docs/RaceDay_API_Endpoint_Plan (2).pdf" ]; then
             echo "ERROR: API Endpoint Plan is missing."
             exit 1
           fi
@@ -62,9 +62,7 @@ jobs:
 
       - name: Validation successful
         run: |
-          echo "======================================"
-          echo "RaceDay repository validation passed!"
-          echo "======================================"
+          echo "RaceDay repository validation passed."
           echo "ERD: OK"
           echo "Endpoint Plan: OK"
           echo "SQL Script: OK"
