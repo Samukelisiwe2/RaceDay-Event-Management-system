@@ -1,0 +1,71 @@
+name: Validate RaceDay Repository
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate Required Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Check docs folder
+        run: |
+          if [ ! -d "docs" ]; then
+            echo "ERROR: docs folder is missing."
+            exit 1
+          fi
+          echo "docs folder found."
+
+      - name: Check ERD image
+        run: |
+          if [ ! -f "docs/RaceDay_ERD(1).png" ]; then
+            echo "ERROR: RaceDay ERD image is missing."
+            exit 1
+          fi
+          echo "ERD image found."
+
+      - name: Check API Endpoint Plan
+        run: |
+          if [ ! -f "docs/RaceDay_API_Endpoint_Plan.pdf" ]; then
+            echo "ERROR: API Endpoint Plan is missing."
+            exit 1
+          fi
+          echo "API Endpoint Plan found."
+
+      - name: Check SQL script
+        run: |
+          if [ ! -f "docs/RaceDay_Database.sql" ]; then
+            echo "ERROR: SQL database script is missing."
+            exit 1
+          fi
+          echo "SQL database script found."
+
+      - name: Check README
+        run: |
+          if [ ! -f "README.md" ]; then
+            echo "ERROR: README.md is missing."
+            exit 1
+          fi
+          echo "README.md found."
+
+      - name: Validation successful
+        run: |
+          echo "======================================"
+          echo "RaceDay repository validation passed!"
+          echo "======================================"
+          echo "ERD: OK"
+          echo "Endpoint Plan: OK"
+          echo "SQL Script: OK"
+          echo "README: OK"
